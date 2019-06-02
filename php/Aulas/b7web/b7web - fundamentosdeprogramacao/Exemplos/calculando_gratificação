@@ -1,0 +1,11 @@
+ALGORITMO calculado_gratificacao
+
+titulo = RECEBE O TITULO DA PESSOA (DOUTORADO OU MESTRADO)
+salario = 1000
+
+SE titulo == DOUTORADO 
+    salario = salario * 3
+SE titulo == MESTRADO
+    salario = salario * 2  
+
+MOSTRAR: O salário de "titulo" é igual a "salario";

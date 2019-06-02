@@ -1,0 +1,22 @@
+ALGORITMO pegar onibus:
+
+    1. Ir na parada
+
+ENQUANTO ônibus não chega:
+    2. Espere o Ônibus
+subir no ônibus
+
+pegar a passagem 
+    SE não há passagem
+        pegar o dinheiro
+        pagar o cobrador
+        
+troco = dinheiro - valor da passagem
+
+ENQUANTO o banco não estiver vazio
+    IR PARA O PRÓXIMO BANCO
+sentar
+
+
+
+

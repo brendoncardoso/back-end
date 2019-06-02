@@ -1,0 +1,17 @@
+nome = seunome;
+
+SE (nome == 'seu nome') ENTÃO
+    código
+    código
+    código
+FIM 
+CASO CONTRÁRIO ENTÃO
+    código
+    código
+    código
+FIM
+
+FUNÇÃO soma (a, b){
+    soma = a + b
+    return soma;
+} 

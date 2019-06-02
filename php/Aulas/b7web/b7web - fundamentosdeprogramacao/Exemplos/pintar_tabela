@@ -1,0 +1,15 @@
+ALGORITMO pintar uma linha sim e não
+
+linhas = 10;
+linha_atual = 1;
+x = 0;
+
+ENQUANTO linha_atual <= linhas 
+    x = 1 - x;
+    
+    SE x = 0
+        PINTAR A TABELA DE CINZA
+    SE x = 1 
+        PINTAR A TABELA DE BRANCO
+    linha_atual++
+

@@ -1,0 +1,9 @@
+ALGORITMO calcular o valor da passagem
+
+PRECO = 10
+IDADE = IDADE DA PESSOA
+
+SE IDADE < 65
+    DIZER: o preco é PRECO
+CASO CONTRÁRIO
+    DIZER: o preco é GRATIS
