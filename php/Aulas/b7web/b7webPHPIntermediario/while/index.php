@@ -1,8 +1,8 @@
 <?php
-    $nome = "Brendon";
+    $x = "0";
 
-    while($nome == "Brendon"){
-        echo 'O X é igual a: '.$nome. '</br>';
-        $nome++;
+    while($x <= 10){
+        echo 'O X é igual a: '.$x. '</br>';
+        $x++;
     }
 ?>
