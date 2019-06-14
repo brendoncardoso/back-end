@@ -1,7 +1,24 @@
 <?php
-    $nomes = array("Brendon", "Pedro", "Thiago", "Roberta");
+    //$nomes = array ("Brendon", "Yago", "Pedro", "João");
 
-    foreach($nomes as $alunos){
-        echo 'Os alunos, são: ' .$alunos;
+    /////////////////////////////////////////////////////////// 
+
+    $nomes = array(
+            "nome" => "Brendon", 
+            "idade" => 19
+    );
+
+    echo '<pre>';
+    print_r($nomes);
+    echo '</pre>';
+
+    foreach($nomes AS $dado => $nome){
+        echo $nome. '</br>';
     }
+
+    /////////////////////////////////////////////////////////// 
+
+
+
+    //Tempo de Paralisação do Vídeo: 07:32
 ?>
