@@ -29,7 +29,7 @@ $array = array (
 
 $array2 = array_pop($array);
 echo '<pre>';
-print_r($array2);
+    print_r($array2);
 echo '</pre>';
 
 //4. array_shift
@@ -40,43 +40,36 @@ $array = array (
 
 $array2 = array_shift($array);
 echo '<pre>';
-print_r($array2);
+    print_r($array2);
 echo '</pre>';
 
 //5. asort
-$array = array (
-    "nome" => "Brendon", 
-    "idade" => 19,
-);
+$array = array ("Brendon", "Fernanda", "Diego");
 
-$array2 = asort($array);
+asort($array);
 echo '<pre>';
-print_r($array2);
+    print_r($array);
 echo '</pre>';
 
 //6. arsoft
-$array = array (
-    "nome" => "Brendon", 
-    "idade" => 19,
-);
+$array = array ("Brendon", "Fernanda", "Diego");
 
-$array2 = arsort($array);
+arsort($array);
 echo '<pre>';
-print_r($array2);
+    print_r($array);
 echo '</pre>';
 
 //7. count
+$array = array("Brendon", "Fernanda", "Diego");
+echo 'Total de registro, é de: '. count($array).'</br></br>';
 
-$array = array (
-    "nome" => "Brendon", 
-    "idade" => 19,
-);
-
-$array2 = count($array);
-echo '<pre>';
-print_r($array2);
-echo '</pre>';
 //8. in_array
+$array = array("Brendon", "Fernanda", "Diego");
 
+if(in_array("Brendon", $array)){
+    echo 'Ok, esse nome existe dentro da array.';
+}else{
+    echo 'Não existe.';
+}
 
 ?>
