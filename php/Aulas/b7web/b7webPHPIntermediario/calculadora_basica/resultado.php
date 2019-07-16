@@ -1,18 +1,33 @@
 <?php
-    $n1 = $_GET['n1'];
-    $n2 = $_GET['n2'];
-    $op = $_GET['op'];
-?>
+    if(!empty($_GET['n1']) && !empty($_GET['n2']) && !empty($_GET['op'])){
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Resultado</title>
-</head>
-<body>
-    <p><?php echo $_GET['n1']?> <?php echo $_GET['op']; ?> <?php echo $_GET['n2']?> = <?php echo $op?></p>
-</body>
-</html>
+        $n1 = floatval($_GET['n1']);
+        $n2 = floatval($_GET['n2']);
+        $op = $_GET['op'];
+
+        switch($op){
+            case '+':
+                $conta = $n1 + $n2;
+                echo $n1.' + '.$n2.' = '.$conta;
+                break;
+
+            case '-':
+                $conta = $n1 - $n2;
+                echo $n1.' - '.$n2.' = '.$conta;
+                break;
+
+            case '*':
+                $conta = $n1 * $n2;
+                echo $n1.' * '.$n2.' = '.$conta;
+                break;
+
+            case '/':
+                $conta = $n1 / $n2;
+                echo $n1.' / '.$n2.' = '.$conta;
+                break;
+        }
+
+    } else {
+        header('location: index.php');
+    }
+?>

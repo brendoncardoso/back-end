@@ -1,28 +1,9 @@
 <?php
 
     if(isset($_GET['n1']) && !empty($_GET['n1']) && isset($_GET['n2']) && !empty($_GET['n2'])) {
-
         $n1 = addslashes($_GET['n1']);
         $n2 = addslashes($_GET['n2']);
         $op = addslashes($_GET['op']);
-    
-
-        switch($op){
-            case '+':
-                echo $n1 + $n2;
-                break;
-            case '-':
-                echo $n1 - $n2;
-                break;
-            case '*':
-                echo $n1 * $n2;
-                break;
-            case '/':
-                echo $n1 / $n2;
-                break;
-        }
-    } else {
-        
     }
 ?>
 
@@ -35,7 +16,7 @@
     <title>Exercício Cálculadora</title>
 </head>
 <body>
-    <form action="" method="get">
+    <form action="resultado.php" method="get">
         Valor 1:
         <input type="text" name="n1"><br><br>
 
