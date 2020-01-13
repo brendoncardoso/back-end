@@ -1,6 +1,6 @@
 <?php
     //Nome do Banco de Dados
-    define('DB_NAME','nomedobancodedados');
+    define('DB_NAME','b7web');
 
     //Nome do Usuário do Banco de Dados
     define('DB_USER','root');
