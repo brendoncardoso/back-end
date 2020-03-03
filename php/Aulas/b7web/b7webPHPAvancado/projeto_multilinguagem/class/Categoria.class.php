@@ -28,7 +28,7 @@
         }
         
         public function insertCategoria($palavra){
-            $sql = "SELECT palavra FROM categoria";
+            $sql = "SELECT palavra FROM categoria WHERE palavra = :palavra";
             $sql = $this->db->prepare($sql);
             $sql->execute();
             $sql_select_palavra_rowCount = $sql->rowCount();
