@@ -37,10 +37,6 @@
             $sql_select->execute(); 
             $rowCount = $sql_select->rowCount();
                 
-            
-//            echo "<pre>";
-//            print_r($rowCount);
-//            echo "</pre>"; exit;
            if($rowCount > 0){
                
                 $fetch = $sql_select->fetchAll(PDO::FETCH_ASSOC);
@@ -49,23 +45,14 @@
                     $arrayVoto[$values['id_filme']][] = $values['nota'];
                 }
 
-                foreach($arrayVoto as $key => $values){
-                    foreach($values as $votos){
-                        print_r($votos);
-//                        if($rowCount > 0){
-//                            $votos = $votos;
-//                        }else{
-//                            $votos += $votos;
-//                        }
-                    }
-                }
- exit;
-                echo "<pre>";
-                print_r($votos);
-                echo "</pre>"; exit;
-                //$media = ($votos/$rowCount);
+                $sql_select = "SELECT sum(nota) AS total FROM voto WHERE id_filme = :id_filme";
+                $sql_select = $this->db->prepare($sql_select);
+                $sql_select->bindValue(':id_filme', $id_filme);
+                $sql_select->execute(); 
+                $soma = $sql_select->fetch(PDO::FETCH_ASSOC);
+                $total = $soma['total'];
                 
-                
+                $media = round(($total/$rowCount), 2); 
                     
                 $sql = "UPDATE filmes SET media = :media WHERE id = :id";
                 $sql = $this->db->prepare($sql);
