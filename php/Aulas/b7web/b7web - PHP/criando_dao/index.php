@@ -2,10 +2,8 @@
 require 'config.php';
 require 'dao/UsuarioDaoMySQL.php';
 $usuarioDaoMySQL = new UsuarioDaoMySQL($pdo);
+
 $lista = $usuarioDaoMySQL->findAll();
-echo "<pre>";
-print_r($lista);
-echo "</pre>";
 ?>
 
 <a href="adicionar.php">ADICIONAR USUÁRIO</a>

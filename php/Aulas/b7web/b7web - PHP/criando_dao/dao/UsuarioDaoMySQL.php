@@ -10,7 +10,10 @@
         }
 
         public function add(Usuario $obj){
-            
+            $sql = $this->pdo->prepare("INSERT INTO usuarios (nome, email) VALUES (:name, :email)");
+            $sql->bindValue(':name', $obj->getNome());
+            $sql->bindValue(':email', $obj->getEmail());
+            $sql->execute();
         }
 
         public function findAll(){
@@ -33,16 +36,48 @@
             return $array;
         }
 
-        public function findAssoc($id){
-            
+        public function findByEmail($email){
+            $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
+            $sql->bindValue(':email', $email);
+            $sql->execute();
+
+            if($sql->rowCount() > 0){
+                return TRUE;
+            }else{
+                return FALSE;
+            }
+        }
+
+        public function findId($id){
+            $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE id = :id");
+            $sql->bindValue(':id', $id);
+            $sql->execute();
+
+            if($sql->rowCount() > 0) {
+                $dados = $sql->fetch(PDO::FETCH_ASSOC);
+                $newUsuario = new Usuario();
+                $newUsuario->setId($id);
+                $newUsuario->setNome($dados['nome']);
+                $newUsuario->setEmail($dados['email']);
+
+                return $newUsuario;
+            } else {
+                return FALSE;
+            }
         }
 
         public function update(Usuario $obj){
-            
+            $sql = $this->pdo->prepare("UPDATE usuarios SET nome = :name, email = :email WHERE id = :id");
+            $sql->bindValue(':name', $obj->getNome());
+            $sql->bindValue(':email', $obj->getEmail());
+            $sql->bindValue(':id', $obj->getId());
+            $sql->execute();
         }
 
         public function delete($id){
-            
+            $sql = $this->pdo->prepare("DELETE FROM usuarios WHERE id = :id");
+            $sql->bindValue(':id', $id);
+            $sql->execute();
         }
     }
 ?>

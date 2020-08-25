@@ -29,7 +29,8 @@ class Usuario {
 Interface UsuarioDao {
     public function add(Usuario $obj);
     public function findAll();
-    public function findAssoc($id);
+    public function findByEmail($email);
+    public function findId($id);
     public function update(Usuario $obj);
     public function delete($id);
 }

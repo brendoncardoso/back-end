@@ -1,17 +1,18 @@
 <?php
 require 'config.php';
+require 'dao/UsuarioDaoMySQL.php';
+$usuarioDaoMySQL = new UsuarioDaoMySQL($pdo);
 
 $id = filter_input(INPUT_POST, 'id');
 $name = filter_input(INPUT_POST, 'name');
 $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 
 if($id && $name && $email) {
-
-    $sql = $pdo->prepare("UPDATE usuarios SET nome = :name, email = :email WHERE id = :id");
-    $sql->bindValue(':name', $name);
-    $sql->bindValue(':email', $email);
-    $sql->bindValue(':id', $id);
-    $sql->execute();
+    $newUsuario = new Usuario();
+    $newUsuario->setId($id);
+    $newUsuario->setNome($name);
+    $newUsuario->setEmail($email);
+    $usuarioDaoMySQL->update($newUsuario);
 
     header("Location: index.php");
     exit;
