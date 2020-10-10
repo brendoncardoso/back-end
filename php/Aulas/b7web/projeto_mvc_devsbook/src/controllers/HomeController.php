@@ -2,13 +2,18 @@
 namespace src\controllers;
 
 use \core\Controller;
+use src\handlers\LoginHandler;
 
 class HomeController extends Controller {
 
-    private $verifySession; 
+    private $login; 
 
     public function __construct(){
-        $this->redirect('/login');
+        $this->login = new LoginHandler();
+        
+        if($this->login->checkLogin() === false){
+            $this->redirect('/login');
+        }
     }
 
     public function index() {

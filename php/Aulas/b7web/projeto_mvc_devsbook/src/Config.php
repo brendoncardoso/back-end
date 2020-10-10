@@ -2,7 +2,7 @@
 namespace src;
 
 class Config {
-    const BASE_DIR = '/projeto_mvc_devsbook/public';
+    const BASE_DIR = '/back-end/php/Aulas/b7web/projeto_mvc_devsbook/public';
 
     const DB_DRIVER = 'mysql';
     const DB_HOST = 'localhost';
