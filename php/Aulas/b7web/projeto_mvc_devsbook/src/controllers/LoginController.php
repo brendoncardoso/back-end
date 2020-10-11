@@ -23,10 +23,16 @@ class LoginController extends Controller {
     }
 
     public function signup() {
-        $this->render('cadastro');
+        $message = '';
+        if(isset($_SESSION['message']) && !empty($_SESSION['message'])){
+            $message = $_SESSION['message']; 
+            $_SESSION['message'] = '';
+        }
+        
+        $this->render('cadastro', ['message' => $message]);
     }
     
-    public function signinActions() {
+    public function signinAction() {
         
         $email = $_POST['email'];
         $senha = $_POST['password'];
@@ -43,5 +49,9 @@ class LoginController extends Controller {
             $_SESSION['message'] = "Formulário não foi preenchido corretamente";
             $this->render('login');
         }
+    }
+    
+    public function signupAction() {
+        
     }
 }
