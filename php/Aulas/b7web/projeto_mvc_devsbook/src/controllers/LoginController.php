@@ -33,14 +33,13 @@ class LoginController extends Controller {
     }
     
     public function signinAction() {
-        
         $email = $_POST['email'];
-        $senha = $_POST['password'];
+        $senha = $_POST['senha'];
         
         if($email && $senha){
             if($this->login->verifyLogin($email, $senha) == TRUE){
-                $token = $_SESSION['token'];
-                $this->render('/');
+                $_SESSION['token'] == $this->login->verifyLogin($email, $senha);
+                $this->redirect('/');
             }else{
                 $_SESSION['message'] = "Email e/ou Senha estão incorretas.";
                 $this->render('login');
@@ -52,6 +51,29 @@ class LoginController extends Controller {
     }
     
     public function signupAction() {
-        
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+        $nome_completo = $_POST['nome_completo'];
+        $data_nascimento = $_POST['data_nascimento'];
+
+        if($email && $senha && $nome_completo && $data_nascimento){
+            $data_aniversario = explode('/', $data_nascimento);
+            if(count($data_aniversario) != 3){
+                $_SESSION['message'] = 'Data inválida. Por favor, tente novamente';
+                $this->render('cadastro');
+            }
+
+            $data_nascimento_bd = $data_aniversario[2]."-".$data_aniversario[1]."-".$data_aniversario[0];
+            
+            if($this->login->verifyEmailExists($email) == false){
+                $token = $this->login->addUser($email, $senha, $nome_completo, $data_nascimento_bd);
+                $_SESSION['token'] = $token;
+                $this->redirect('/');
+
+            }else{
+                $_SESSION['message'] = 'Esse e-mail já está em uso.';
+                $this->render('cadastro');
+            }
+        }
     }
 }

@@ -14,15 +14,17 @@
     </header>
     <section class="container main">
         <form method="POST" action="<?= $base; ?>/cadastro">
-            <input placeholder="Digite seu Nome Completo" class="input" type="text" name="nome" required/>
+            <?php if(isset($_SESSION['message']) && !empty($_SESSION['message'])){ ?>
+                <div class="message"><?= $_SESSION['message']; ?></div>
+                <br>
+            <?php } ?>
+            <input placeholder="Digite seu Nome Completo" class="input" type="text" name="nome_completo" required/>
             
             <input placeholder="Data de Nascimento" class="input" type="text" name="data_nascimento" id='data_nascimento' required/>
-            
-            <input placeholder="Digite sua Cidade" class="input" type="text" name="cidade" required/>
-            
+                        
             <input placeholder="Digite seu E-mail" class="input" type="email" name="email" required/>
 
-            <input placeholder="Digite sua Senha" class="input" type="password" name="password" required/>
+            <input placeholder="Digite sua Senha" class="input" type="password" name="senha" required/>
 
             <input class="button" type="submit" value="Cadastrar" />
 
