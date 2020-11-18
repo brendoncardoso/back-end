@@ -5,6 +5,7 @@ use src\models\User;
 class LoginHandler {
     
     public $user;
+    public $id;
     public $nome;
     public $foto;
     public $email;
@@ -18,15 +19,15 @@ class LoginHandler {
     public function checkLogin(){   
         if(!empty($_SESSION['token'])){
             $token = $_SESSION['token'];
-
-            $dados = $this->user->select()->table('usuarios')->where('token', $token)->one();
-            if(count($dados) >= 1){
-                $this->user->id = $dados['id'];
-                $this->user->nome = $dados['nome'];
-                $this->user->foto = $dados['foto'];
-                $this->user->email = $dados['email'];
-                $this->user->senha = $dados['senha'];
-                $this->user->token = $dados['token'];
+            $_SESSION = $this->user->select()->table('usuarios')->where('token', $token)->one();
+           
+            if(count($_SESSION) >= 1){
+                $this->user->id = $_SESSION['id'];
+                $this->user->nome = $_SESSION['nome'];
+                $this->user->foto = $_SESSION['foto'];
+                $this->user->email = $_SESSION['email'];
+                $this->user->senha = $_SESSION['senha'];
+                $this->user->token = $_SESSION['token'];
             }else{
                 return false;
             }

@@ -5,7 +5,17 @@
             <div class="row">
                 <div class="column pr-5">
                     <?= $render('feed-new', ['user'  => $array]); ?>
-                    <?= $render('feed-item'); ?>
+                    <?php foreach($feed_item_array['posts'] as $array) { ?>
+                        <?= $render('feed-item', [
+                            'array' => $array
+                        ]); ?>
+                    <?php } ?>
+
+                    <div class="feed-pagination">
+                        <?php for($q=0; $q < $feed_item_array['pageCount']; $q++) { ?>
+                            <a class="<?= $_GET['page'] == $q ? 'active' : ''; ?>" href="<?= $base?>/?page=<?= $q; ?>"><?= $q + 1; ?></a>
+                        <?php } ?>
+                    </div>
                 </div>
                 <div class="column side pl-5">
                     <div class="box banners">
