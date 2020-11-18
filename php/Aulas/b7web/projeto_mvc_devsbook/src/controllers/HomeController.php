@@ -6,7 +6,7 @@ use src\handlers\LoginHandler;
 
 class HomeController extends Controller {
 
-    private $login; 
+    protected $login; 
 
     public function __construct(){
         $this->login = new LoginHandler();
@@ -17,11 +17,16 @@ class HomeController extends Controller {
     }
 
     public function index() {
-        $this->render('home', ['nome' => 'Bonieky']);
+        $this->render('home', ['array' => $this->login->user]);
     }
 
     public function sobre() {
         $this->render('sobre');
+    }
+
+    public function sair(){
+        session_destroy();
+        $this->redirect('/login');
     }
 
     public function sobreP($args) {

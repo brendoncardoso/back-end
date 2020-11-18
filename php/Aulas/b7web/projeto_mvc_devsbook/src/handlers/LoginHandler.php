@@ -4,8 +4,9 @@ use src\models\User;
 
 class LoginHandler {
     
-    private $user;
+    public $user;
     public $nome;
+    public $foto;
     public $email;
     public $senha;
     public $token;
@@ -14,7 +15,7 @@ class LoginHandler {
         $this->user = new User();
     }
     
-    public function checkLogin(){        
+    public function checkLogin(){   
         if(!empty($_SESSION['token'])){
             $token = $_SESSION['token'];
 
@@ -22,29 +23,30 @@ class LoginHandler {
             if(count($dados) >= 1){
                 $this->user->id = $dados['id'];
                 $this->user->nome = $dados['nome'];
+                $this->user->foto = $dados['foto'];
                 $this->user->email = $dados['email'];
                 $this->user->senha = $dados['senha'];
                 $this->user->token = $dados['token'];
             }else{
                 return false;
             }
-        } 
-        
-       
+        }else{
+            return false;
+        }
     } 
     
     public function verifyLogin($email, $senha){
         $verifyLogin = $this->user->select()->table('usuarios')->where('email', $email)->one();
         if(count($verifyLogin)){
             if(password_verify($senha, $verifyLogin['senha'])){
-                $token = md5(time().rand(0, 9999).time());
+                $_SESSION['token'] = md5(time().rand(0, 9999).time());
 
-                $this->user->update()
-                        ->set('token', $token)
+                $this->user->update()->table('usuarios')
+                        ->set('token', $_SESSION['token'])
                         ->where('email', $email)
                 ->execute();
                 
-                return $token;
+                return $_SESSION['token'];
             }
         } else {
             return false;
@@ -65,8 +67,6 @@ class LoginHandler {
             "senha" => $senha,
             "nome" => $nome_completo,
             "data_nascimento" => $data_nascimento,
-            "foto" => 'default.jpg',
-            "cover" => 'cover.jpg',
             "token" => $token
         ])->table('usuarios')->execute();
 
