@@ -22,9 +22,9 @@
                 </div>
                 <div class="head-side-right">
                     <a href="<?= $base; ?>/perfil" class="user-area">
-                        <div class="user-area-text"><?= $this->login->user->nome; ?></div>
+                        <div class="user-area-text"><?= $_SESSION['nome']; ?></div>
                         <div class="user-area-icon">
-                            <img src="<?= $base; ?>/media/avatars/<?= $this->login->user->foto; ?>" />
+                            <img src="<?= $base; ?>/media/avatars/<?= $_SESSION['foto']; ?>" />
                         </div>
                     </a>
                     <a href="<?= $base; ?>/sair" class="user-logout">

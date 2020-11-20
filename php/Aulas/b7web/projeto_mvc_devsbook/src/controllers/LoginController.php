@@ -2,14 +2,14 @@
 namespace src\controllers;
 
 use \core\Controller;
-use src\handlers\LoginHandler;
+use src\handlers\UserHandler;
 
 class LoginController extends Controller {
 
     private $login;
     
     public function __construct(){
-        $this->login = new LoginHandler();
+        $this->userHandler = new UserHandler();
     }
     
     public function signin() {
@@ -37,8 +37,8 @@ class LoginController extends Controller {
         $senha = $_POST['senha'];
         
         if($email && $senha){
-            if($this->login->verifyLogin($email, $senha) == TRUE){
-                $_SESSION['token'] == $this->login->verifyLogin($email, $senha);
+            if($this->userHandler->verifyLogin($email, $senha) == TRUE){
+                $_SESSION['token'] == $this->userHandler->verifyLogin($email, $senha);
                 $this->redirect('/');
             }else{
                 $_SESSION['message'] = "Email e/ou Senha estão incorretas.";
@@ -65,8 +65,8 @@ class LoginController extends Controller {
 
             $data_nascimento_bd = $data_aniversario[2]."-".$data_aniversario[1]."-".$data_aniversario[0];
             
-            if($this->login->verifyEmailExists($email) == false){
-                $token = $this->login->addUser($email, $senha, $nome_completo, $data_nascimento_bd);
+            if($this->userHandler->verifyEmailExists($email) == false){
+                $token = $this->userHandler->addUser($email, $senha, $nome_completo, $data_nascimento_bd);
                 $_SESSION['token'] = $token;
                 $this->redirect('/');
 

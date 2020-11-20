@@ -2,19 +2,19 @@
 namespace src\controllers;
 
 use \core\Controller;
-use src\handlers\LoginHandler;
+use src\handlers\UserHandler;
 use src\handlers\PostHandler;
 
 class HomeController extends Controller {
 
-    protected $login; 
+    protected $userHandler; 
     protected $postHandler;
 
     public function __construct(){
-        $this->login = new LoginHandler();
+        $this->userHandler = new UserHandler();
         $this->postHandler = new PostHandler();
         
-        if($this->login->checkLogin() === false){
+        if($this->userHandler->checkLogin() === false){
             $this->redirect('/login');
         }
     }
@@ -22,10 +22,10 @@ class HomeController extends Controller {
     public function index() {
         $page = intval(empty($_GET['page']) ? 0 : $_GET['page']);
 
-        $feed = $this->postHandler->getHomeFeed($this->login->user->id, $page);
+        $feed = $this->postHandler->getHomeFeed($this->userHandler->user->id, $page);
        
         $this->render('home', [
-            'array' => $this->login->user,
+            'array' => $this->userHandler->user,
             'feed_item_array' => $feed
         ]);
     }

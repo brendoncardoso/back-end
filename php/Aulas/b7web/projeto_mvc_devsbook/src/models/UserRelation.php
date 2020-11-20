@@ -3,9 +3,6 @@ namespace src\models;
 use \core\Model;
 
 class UserRelation extends Model {
-    
-    public function __construct(){
-        
-    }
+  
 
 }

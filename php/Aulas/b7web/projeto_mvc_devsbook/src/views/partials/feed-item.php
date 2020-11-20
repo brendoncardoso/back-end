@@ -5,7 +5,7 @@
                 <a href="<?= $base; ?>/"><img src="<?= $base; ?>/media/avatars/<?= $array->user->foto; ?>" /></a>
             </div>
             <div class="feed-item-head-info">
-                <a href=""><span class="fidi-name"><?= $array->user->nome; ?></span></a>
+                <a href="<?= $base; ?>/perfil/<?= $array->user->id; ?>"><span class="fidi-name"><?= $array->user->nome; ?></span></a>
                 <span class="fidi-action">
                     <?php 
                         switch($array->tipo) { 
